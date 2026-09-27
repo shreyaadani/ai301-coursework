@@ -124,8 +124,22 @@ I accept is a policy that exists somewhere I did not look.
 
 ---
 
-## Reflection prompts
+## Reflection prompts 
 
-<!-- TODO (Shreyaa): answer the template's reflection prompts here in your own words.
-     The empty repo did not carry the template's prompt text, so paste the prompts from
-     the course portal's Unit 1 page and answer them below. -->
+1.Realizing the eval and the real world aren't the same test:
+
+The biggest surprise was that a rubric can score a perfect 20/20 on the eval set and still fail completely the moment it meets a real repo. My eval bundles were all snapshots of established open-source projects with real merge histories, so a check like "requires a merged external PR in the last 90 days" looked airtight, since it correctly caught every dead-repo case in the set. But the Path Review repo is staff-seeded for the class, with zero merged PRs by design, since credit attaches to opening a PR rather than getting it merged. The same check that made my rubric pass the eval made it reject every single open issue on the one repo I actually needed to use it on.
+
+That taught me the eval set can only test what it was built to test. It has no way to force you to think about cases outside its own assumptions. Writing the rubric itself needed more reruns than I expected, not because the checks were badly worded, but because each fix that solved a visible failure sometimes created an invisible one I couldn't see until I ran it against something outside the eval, in this case, real candidate URLs from the actual target repo. If I'd only optimized for passing the bar, I would have shipped a rubric that looked finished but couldn't do its one job.
+
+2.What I'd do differently:
+
+If I started over, I'd look at real candidate issues much earlier in the process, not after the eval was already passing. I treated the eval set as the finish line, when really it was only a training ground built from established repos. Testing against actual open issues from day one, even roughly, would have surfaced the merged-PR assumption long before it cost a rerun. The eval bundles are static and safe. Real issues are messier, and that gap is exactly what the eval can't teach you on its own.
+
+3.Why #38 fits me:
+
+I chose #38, adding integration tests for authentication edge cases, because it lines up with the fit profile I wrote into scope.md: I'm most comfortable in Python/FastAPI on the backend, I lean toward testing work over UI work, and it fits inside the few hours a week I actually have. It's also bounded in a way I could verify myself: the missing test cases are named explicitly (expired tokens, malformed tokens, missing headers, wrong-secret tokens), so I know what "done" looks like before I even start, rather than discovering the real scope mid-PR.
+
+4.What's still uncertain about my rubric:
+
+My biggest worry is that the rubric is more rigid than real issues actually are. Every check I wrote resolves to a clean pass/fail with a specific threshold, which is exactly what made it gradeable and testable, but real issues don't sort into cookie-cutter categories that cleanly. An issue can be mostly well-scoped with one ambiguous sentence, or nearly abandoned but with one recent fluke commit, and my rubric has to force a binary verdict onto something that's genuinely a judgment call. I don't think this is fully fixable, since some rigidity is the price of having a rubric someone else could apply consistently, but I'd want to test it against more messy, real-world edge cases than the 20 (now plus 3 live) I've actually run it on before I'd fully trust it beyond this one assignment.
