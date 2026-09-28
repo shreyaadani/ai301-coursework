@@ -1,0 +1,31 @@
+# Claude Code local config/session files (if generated inside the repo folder)
+.claude/
+.claude-session/
+CLAUDE.md.bak
+
+# Eval harness debug artifacts (don't belong in your submission)
+results.json
+retest.json
+*.debug.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node (if any tooling pulls it in)
+node_modules/
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# Don't accidentally commit your starter clones if nested inside this repo
+ai301-unit1-starter/
+ai301-unit2-starter/
+ai301-unit3-starter/
+ai301-unit4-starter/
+ai301-unit5-starter/
