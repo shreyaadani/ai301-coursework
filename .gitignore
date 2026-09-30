@@ -10,7 +10,7 @@ retest.json
 
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 .venv/
 venv/
 
@@ -20,8 +20,11 @@ node_modules/
 # OS/editor cruft
 .DS_Store
 Thumbs.db
+desktop.ini
 .vscode/
+.idea/
 *.swp
+*~
 
 # Don't accidentally commit your starter clones if nested inside this repo
 ai301-unit1-starter/
