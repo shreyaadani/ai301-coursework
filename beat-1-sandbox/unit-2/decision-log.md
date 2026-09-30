@@ -168,4 +168,72 @@ before the first run — instead of discovering the category floor via a
 failed run, as happened with the merged-PR check in Unit 1 — meant the
 v0 run already passed the bar, and the only revision needed was a
 loosening rather than a new check written under time pressure.
-comm
+
+## Live mode: the claim comment (2026-09-29)
+
+Issue: codepath/pathreview-ai301-fa26-s3#38 (integration tests for
+authentication edge cases). Posted claim:
+https://github.com/codepath/pathreview-ai301-fa26-s3/issues/38#issuecomment-5902249218
+
+Repo-side evidence gathered for the disclosure check:
+`docs/CONTRIBUTING.md` (not the repo root — the root has no
+CONTRIBUTING) states no AI policy and no disclosure ask, so
+`disclosure-when-required` passes without a disclosure line. The only
+claim-related rule is "Comment on the issue to let others know you're
+working on it".
+
+**v1 of the draft was rejected by my own rubric.** It opened "I'll add
+integration tests covering the authentication edge cases mentioned
+above: expired tokens, malformed tokens, missing headers, and requests
+signed with the wrong secret." On an issue whose entire deliverable is
+those tests, that promises the fix before any code has been read —
+`claim-specific-and-honest` fails on exactly that, and it is the same
+sentence as the *Wrong* line in voice-guide Rule 1. Everything else
+passed.
+
+**v2 was accepted.** Replacing the promise with the actual first
+action ("getting the project running locally and checking which of the
+four edge cases … the current suite already covers against
+`api/middleware/auth.py`") made the comment *more* specific, not less:
+dropping the promise left room for the file name and a concrete first
+step. Worth keeping for the reflection — the house rule cost nothing
+and bought precision.
+
+Six checks graded `unclear` / "not yet applicable: claim-only draft"
+and stayed out of the verdict, per the skill's claim-only rule. They
+get exercised for the first time when the repro report is graded as a
+full package.
+
+## Live mode: the repro report (2026-09-29)
+
+Posted repro comment:
+https://github.com/codepath/pathreview-ai301-fa26-s3/issues/38#issuecomment-5902682953
+
+Full package (claim + repro) graded **accept**, 9/9 checks passing.
+The reproduction itself and the choices behind it are written up in
+`repro-decision.md`; what belongs here is what the grading loop taught.
+
+**The first full-package grade passed but flagged a stretch.** The
+report stated the result of a `tests/` search in prose without showing
+its output. `conclusion-within-evidence` still passed — the
+load-bearing conclusion rests on the coverage artifact, not the search
+— but voice-guide Rule 2 ("I show the output, not my confidence in
+it") was only partly satisfied. Added the command and its empty result
+as step 3, with `echo $?` printing 1, since grep prints nothing when
+it matches nothing and an empty block alone cannot be told apart from
+a command that was never run.
+
+**The rule that mattered more:** the original search had been run with
+a different tool, so pasting a `grep` line that had never been
+executed would have been fabricated evidence — a command that would
+*probably* have produced that output. Ran the real command first and
+pasted the real result. This is the same failure the four
+`no-evidence` eval packages are built from, seen from the inside: it
+would have been completely invisible to any reader of the comment.
+
+**Tooling note for the reflection.** Neither posted comment could be
+verified from here: web fetching reports "0 comments" even on issues
+that demonstrably have them (checked against p5.js#7168, which the
+eval bundle records as having 9). GitHub renders comment threads
+client-side. With `gh` unavailable on this machine, posted comments
+have to be verified in a browser.
