@@ -1,0 +1,66 @@
+##### BEFORE: branch main @ 2f4e82f  (tests/**/__pycache__ cleared first)
+
+$ python -m pytest tests/integration -v -m integration
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+benchmark: 5.3.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.168.3, platformdirs-4.12.2, asyncio-1.4.0, benchmark-5.3.0, cov-7.1.0, pytest_httpserver-1.1.5
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 0 items
+
+============================ no tests ran in 0.36s ============================
+exit status: 5
+
+$ python -m pytest tests/unit -m unit --cov=api.middleware.auth --cov-report=term-missing -q
+x..........xx.....x.............x.xxx.x...x..x...x......x....x.......... [ 16%]
+.x...........................................x............xx.......x.... [ 33%]
+.x....x........................x........................................ [ 50%]
+.........................x........x.....x........................x...... [ 67%]
+..........xx.x..xx...xxxxx...xxx.xxx.xx.....................x........... [ 84%]
+..........x....xx..xx.......x...............x.x.....................C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\coverage\inorout.py:558: CoverageWarning: Module api.middleware.auth was never imported. (module-not-imported); see https://coverage.readthedocs.io/en/7.16.2/messages.html#warning-module-not-imported
+  self.warn(f"Module {pkg} was never imported.", slug="module-not-imported")
+C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\coverage\control.py:967: CoverageWarning: No data was collected. (no-data-collected); see https://coverage.readthedocs.io/en/7.16.2/messages.html#warning-no-data-collected
+  self._warn("No data was collected.", slug="no-data-collected")
+C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\pytest_cov\plugin.py:366: CovReportWarning: Failed to generate report: No data to report.
+
+  warnings.warn(CovReportWarning(message), stacklevel=1)
+
+WARNING: Failed to generate report: No data to report.
+
+                                                                         [100%]
+============================== warnings summary ===============================
+core\config.py:7
+  C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\core\config.py:7: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Settings(BaseSettings):
+
+tests/unit/test_review_service.py::TestReviewService::test_list_reviews_page_2_returns_correct_offset
+  C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\inspect.py:735: RuntimeWarning: coroutine 'AsyncMockMixin._execute_mock_call' was never awaited
+    def unwrap(func, *, stop=None):
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+375 passed, 53 xfailed, 2 warnings in 22.97s
+exit status: 0
+
+$ python -m pytest tests/integration -m integration --cov=api.middleware.auth --cov-report=term-missing -q
+C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\coverage\inorout.py:558: CoverageWarning: Module api.middleware.auth was never imported. (module-not-imported); see https://coverage.readthedocs.io/en/7.16.2/messages.html#warning-module-not-imported
+  self.warn(f"Module {pkg} was never imported.", slug="module-not-imported")
+C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\coverage\control.py:967: CoverageWarning: No data was collected. (no-data-collected); see https://coverage.readthedocs.io/en/7.16.2/messages.html#warning-no-data-collected
+  self._warn("No data was collected.", slug="no-data-collected")
+C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\pytest_cov\plugin.py:366: CovReportWarning: Failed to generate report: No data to report.
+
+  warnings.warn(CovReportWarning(message), stacklevel=1)
+
+WARNING: Failed to generate report: No data to report.
+
+
+no tests ran in 0.42s
+exit status: 5
+
+$ grep -rnE "middleware|get_current_user|TestClient|AsyncClient|httpx" tests/
+exit status: 1

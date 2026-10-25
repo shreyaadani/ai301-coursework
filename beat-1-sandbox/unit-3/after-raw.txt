@@ -1,0 +1,130 @@
+##### AFTER: branch fix/38-auth-integration-tests @ e56a3d4  (tests/**/__pycache__ cleared first)
+
+$ python -m pytest tests/integration -v -m integration
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+benchmark: 5.3.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.168.3, platformdirs-4.12.2, asyncio-1.4.0, benchmark-5.3.0, cov-7.1.0, pytest_httpserver-1.1.5
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 7 items
+
+tests/integration/test_auth_middleware.py::test_missing_authorization_header PASSED [ 14%]
+tests/integration/test_auth_middleware.py::test_malformed_token PASSED   [ 28%]
+tests/integration/test_auth_middleware.py::test_expired_token PASSED     [ 42%]
+tests/integration/test_auth_middleware.py::test_wrong_signing_secret PASSED [ 57%]
+tests/integration/test_auth_middleware.py::test_valid_token_reaches_route PASSED [ 71%]
+tests/integration/test_auth_middleware.py::test_unknown_user PASSED      [ 85%]
+tests/integration/test_auth_middleware.py::test_user_lookup_error PASSED [100%]
+
+============================== warnings summary ===============================
+core\config.py:7
+  C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\core\config.py:7: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Settings(BaseSettings):
+
+tests/integration/test_auth_middleware.py::test_missing_authorization_header
+  C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\api\main.py:84: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    @app.on_event("startup")
+
+tests/integration/test_auth_middleware.py::test_missing_authorization_header
+  C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\fastapi\applications.py:4744: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    return self.router.on_event(event_type)  # ty: ignore[deprecated]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 7 passed, 3 warnings in 2.63s ========================
+exit status: 0
+
+$ python -m pytest tests/unit -m unit --cov=api.middleware.auth --cov-report=term-missing -q
+x..........xx.....x.............x.xxx.x...x..x...x......x....x.......... [ 16%]
+.x...........................................x............xx.......x.... [ 33%]
+.x....x........................x........................................ [ 50%]
+.........................x........x.....x........................x...... [ 67%]
+..........xx.x..xx...xxxxx...xxx.xxx.xx.....................x........... [ 84%]
+..........x....xx..xx.......x...............x.x.....................C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\coverage\inorout.py:558: CoverageWarning: Module api.middleware.auth was never imported. (module-not-imported); see https://coverage.readthedocs.io/en/7.16.2/messages.html#warning-module-not-imported
+  self.warn(f"Module {pkg} was never imported.", slug="module-not-imported")
+C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\coverage\control.py:967: CoverageWarning: No data was collected. (no-data-collected); see https://coverage.readthedocs.io/en/7.16.2/messages.html#warning-no-data-collected
+  self._warn("No data was collected.", slug="no-data-collected")
+C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\pytest_cov\plugin.py:366: CovReportWarning: Failed to generate report: No data to report.
+
+  warnings.warn(CovReportWarning(message), stacklevel=1)
+
+WARNING: Failed to generate report: No data to report.
+
+                                                                         [100%]
+============================== warnings summary ===============================
+core\config.py:7
+  C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\core\config.py:7: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Settings(BaseSettings):
+
+tests/unit/test_review_service.py::TestReviewService::test_list_reviews_page_2_returns_correct_offset
+  C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\inspect.py:735: RuntimeWarning: coroutine 'AsyncMockMixin._execute_mock_call' was never awaited
+    def unwrap(func, *, stop=None):
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+375 passed, 53 xfailed, 2 warnings in 22.33s
+exit status: 0
+
+$ python -m pytest tests/integration -m integration --cov=api.middleware.auth --cov-report=term-missing -q
+.......                                                                  [100%]
+============================== warnings summary ===============================
+core\config.py:7
+  C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\core\config.py:7: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.13/migration/
+    class Settings(BaseSettings):
+
+tests/integration/test_auth_middleware.py::test_missing_authorization_header
+  C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\api\main.py:84: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    @app.on_event("startup")
+
+tests/integration/test_auth_middleware.py::test_missing_authorization_header
+  C:\Users\Shreyaa Dani\Codepath\pathreview-ai301-fa26-s3\.venv\Lib\site-packages\fastapi\applications.py:4744: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    return self.router.on_event(event_type)  # ty: ignore[deprecated]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.11.9-final-0 _______________
+
+Name                     Stmts   Miss  Cover   Missing
+------------------------------------------------------
+api\middleware\auth.py      38      5    87%   41, 45, 53-55
+------------------------------------------------------
+TOTAL                       38      5    87%
+7 passed, 3 warnings in 3.86s
+exit status: 0
+
+$ grep -rnE "middleware|get_current_user|TestClient|AsyncClient|httpx" tests/
+tests/conftest.py:88:    """Return a TestClient for the real app with get_db overridden by stub_db.
+tests/conftest.py:91:    load it. TestClient is not entered as a context manager, so the startup
+tests/conftest.py:94:    from fastapi.testclient import TestClient
+tests/conftest.py:103:    yield TestClient(app)
+tests/integration/test_auth_middleware.py:1:"""Integration tests for authentication edge cases in api/middleware/auth.py (#38)."""
+tests/integration/test_auth_middleware.py:40:    # branch at api/middleware/auth.py:44-49, discussed on #38.
+tests/integration/test_auth_middleware.py:58:    """Test a valid token passes auth, so the 401s above come from the middleware."""
+tests/integration/test_auth_middleware.py:83:    """Test a database failure during the user lookup gets 500 from the middleware."""
+Binary file tests/integration/__pycache__/test_auth_middleware.cpython-311-pytest-9.1.1.pyc matches
+Binary file tests/__pycache__/conftest.cpython-311-pytest-9.1.1.pyc matches
+exit status: 0
