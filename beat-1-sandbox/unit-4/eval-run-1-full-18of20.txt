@@ -1,0 +1,55 @@
+# eval run written by run_eval.py at 2026-10-25T23:10:48Z
+# model: sonnet (pinned)
+# graded: C:\Users\Shreyaa Dani\.claude\skills\pr-precheck
+# packages: 20 scored
+#   SKILL.md  sha256:11e01dd4581ba576
+#   rubric.md  sha256:12bc5eae6f85ed0a
+#   procedure.md  sha256:3bd78c1c7a9d3757
+#   evidence-guide.md  sha256:f1ba018132f1f0d4
+#
+grading 20 package(s) with the tool at C:\Users\Shreyaa Dani\.claude\skills\pr-precheck, model sonnet, 5 worker(s)...
+  pkg-04: reject
+  pkg-03: reject
+  pkg-01: reject
+  pkg-02: accept
+  pkg-05: accept
+  pkg-06: reject
+  pkg-07: reject
+  pkg-08: reject
+  pkg-10: reject
+  pkg-09: reject
+  pkg-12: reject
+  pkg-11: reject
+  pkg-14: reject
+  pkg-15: reject
+  pkg-13: accept
+  pkg-16: accept
+  pkg-17: reject
+  pkg-18: reject
+  pkg-19: accept
+  pkg-20: reject
+
+item    category        gold    verdict  agree  note
+pkg-01  standards-wall  reject  reject   yes    
+pkg-02  clear-accept    accept  accept   yes    
+pkg-03  silent-drift    reject  reject   yes    
+pkg-04  not-tested      reject  reject   yes    
+pkg-05  clear-accept    accept  accept   yes    
+pkg-06  silent-drift    reject  reject   yes    
+pkg-07  not-tested      reject  reject   yes    
+pkg-08  clear-accept    accept  reject   NO     failed: decisive-test-evidence
+pkg-09  silent-drift    reject  reject   yes    
+pkg-10  not-tested      reject  reject   yes    
+pkg-11  clear-accept    accept  reject   NO     failed: description-matches-diff, decisive-test-evidence
+pkg-12  unreviewable    reject  reject   yes    
+pkg-13  clear-accept    accept  accept   yes    
+pkg-14  not-tested      reject  reject   yes    
+pkg-15  unreviewable    reject  reject   yes    
+pkg-16  clear-accept    accept  accept   yes    
+pkg-17  silent-drift    reject  reject   yes    
+pkg-18  unreviewable    reject  reject   yes    
+pkg-19  clear-accept    accept  accept   yes    
+pkg-20  standards-wall  reject  reject   yes    
+
+categories: clear-accept 5/7  not-tested 4/4  silent-drift 4/4  standards-wall 2/2  unreviewable 3/3
+agreement: 18/20 scored items  (bar: 18/20: PASS)
